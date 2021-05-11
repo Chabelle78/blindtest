@@ -18,8 +18,11 @@ function App() {
   useEffect(() => {
     const getDatas = async () => {
       const data = await (
-        await fetch("http://localhost:4000/api/v1/songs", {
+        await fetch("https://api-bazify.basile.vernouillet.dev/api/v1/songs", {
           method: "GET",
+          headers: {
+            Authorization: `Bearer0 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpJZGF5eXkiLCJpYXQiOjE2MjA3NjEyNjYsImV4cCI6MTYyMDg0NzY2Nn0.eIW8d8oZKbW6pqqs53iBED0v2D3SsS7SaT-tI5HRHiE`,
+          },
         })
       ).json();
       setSongs(data);

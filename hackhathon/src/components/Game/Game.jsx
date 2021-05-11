@@ -61,7 +61,7 @@ export default function Game({ songs, timer }) {
   }, [timer]);
 
   return (
-    <div className="flex flex-col bg-black bg-opacity-50 items-center justify-center align-middle">
+    <div className="flex flex-col bg-purple-800 rounded-xl bg-opacity-80 items-center justify-center align-middle">
       <audio ref={audioRef} controls src={random.s3_link}></audio>
       <div>Bienvennue JULIEN</div>
       {startTimer > 0 ? startTimer : "START"}
@@ -73,21 +73,20 @@ export default function Game({ songs, timer }) {
         )}
       </div>
       <div>TRACK INFOS</div>
-      <ul className="w-full grid grid-cols-2 grid-rows-2">
+      <ul className="w-full grid m-2 bg-purple-800 border-2 border-white rounded-xl bg-opacity-50 grid-cols-2 grid-rows-2">
         {myArray.map((song, index) => {
           return (
             <li
               key={index}
-              className="flex items-center flex-col justify-center align-middle"
+              className="flex m-2  items-center flex-col justify-center align-middle"
             >
               <button
-                className="text-white w-full cursor-pointer"
+                className="text-white w-full border-2 border-white rounded-xl py-2 px-4 cursor-pointer"
                 value={song.title}
                 onClick={handleClick}
               >
                 {song.title}
               </button>
-              <img className="w-28" src={song.album.picture} alt="" />
             </li>
           );
         })}
