@@ -6,7 +6,7 @@ import "./Main.css";
 
 export default function Main({ songs, timer }) {
   return (
-    <div className="main flex items-center align-middle justify-around w-screen h-screen">
+    <div className="main flex items-center align-middle justify-around w-full h-screen">
       <Scores />
       <Game timer={timer} songs={songs} />
       <Upload />
