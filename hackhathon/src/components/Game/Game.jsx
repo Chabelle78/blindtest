@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Scores() {
+export default function Game() {
   return <div></div>;
 }
