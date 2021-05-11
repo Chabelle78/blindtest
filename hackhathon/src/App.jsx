@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const getDatas = async () => {
       const data = await (
-        await fetch("http://192.168.1.26:4000/api/v1/songs", {
+        await fetch("http://localhost:4000/api/v1/songs", {
           method: "GET",
         })
       ).json();
