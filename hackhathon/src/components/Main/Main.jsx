@@ -2,7 +2,8 @@ import React from "react";
 import Game from "../Game/Game";
 import Scores from "../Scores/Scores";
 import Upload from "../Upload/Upload";
-import './Main.css'
+import LoginForm from "../Form/LoginForm";
+import "./Main.css";
 
 export default function Main() {
   return (
@@ -11,6 +12,7 @@ export default function Main() {
       <Scores />
       <Game />
       <Upload />
+      <LoginForm />
     </div>
   );
 }
