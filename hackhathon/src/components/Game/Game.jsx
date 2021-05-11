@@ -61,7 +61,7 @@ export default function Game({ songs, timer }) {
   }, [timer]);
 
   return (
-    <div className="flex flex-col items-center justify-center align-middle">
+    <div className="flex flex-col bg-black bg-opacity-50 items-center justify-center align-middle">
       <audio ref={audioRef} controls src={random.s3_link}></audio>
       <div>Bienvennue JULIEN</div>
       {startTimer > 0 ? startTimer : "START"}
