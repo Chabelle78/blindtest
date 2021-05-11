@@ -20,13 +20,17 @@ export default function LoginForm() {
 
   return (
     <div>
-      <form action="submit" onSubmit={handleSubmit(onSubmit)} action="">
-        <div>
-          {/* <label htmlFor="pseudo" className="">
-            PSEUDO
-          </label> */}
+      <form
+        action="submit"
+        onSubmit={handleSubmit(onSubmit)}
+        action=""
+        className="text-center"
+      >
+        <div className="flex flex-col mb-2">
           <input
-            className="focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none"
+            className={`focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none ${
+              errors.pseudo ? "bg-red-300 placeholder-red-700" : ""
+            }`}
             type="text"
             placeholder="Pseudo..."
             name="pseudo"
@@ -41,10 +45,11 @@ export default function LoginForm() {
           />
           <ErrorMessage errors={errors} name="pseudo" />
         </div>
-        <div>
-          {/* <label htmlFor="password">PASSWORD</label> */}
+        <div className="flex flex-col mb-2">
           <input
-            className="focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none"
+            className={`focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none ${
+              errors.password ? "bg-red-300 placeholder-red-700" : ""
+            }`}
             type="password"
             name="password"
             placeholder="Password..."
@@ -61,7 +66,7 @@ export default function LoginForm() {
         </div>
         <button
           type="submit"
-          className="border rounded-full text-xl bg-yellow-500"
+          className="border-4 border-black  bg-black rounded-2xl px-4 py-2 hover:bg-gray-700 text-white text-lg "
         >
           PLAY
         </button>
