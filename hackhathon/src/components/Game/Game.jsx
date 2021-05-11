@@ -1,9 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 
-export default function Game({ songs, timer }) {
-  const [startTimer, setStartTimer] = useState(3);
+export default function Game({
+  songs,
+  timer,
+  isPlay,
+  isWarming,
+  setIsPlay,
+  startTimer,
+  setStartTimer,
+  setTimer,
+}) {
   const audioRef = useRef();
-
+  const [gameState, setGameState] = useState();
   const [random, setRandom] = useState(
     songs[Math.floor(Math.random() * songs.length)]
   );
@@ -21,7 +29,7 @@ export default function Game({ songs, timer }) {
   const [isLoose, setIsLoose] = useState(false);
   const [userChoice, setUserChoice] = useState();
   const [randomResults, setRandomResults] = useState();
-  console.log(random.title);
+
   const handleClick = (e) => {
     console.log(e.target.value);
     console.log([random].filter((song) => song.title.includes(e.target.value)));
@@ -35,59 +43,71 @@ export default function Game({ songs, timer }) {
   };
 
   useEffect(() => {
-    audioRef.current.currentTime = 10;
-    const timer = setInterval(() => setStartTimer((c) => c - 1), 1000);
+    if (isWarming) {
+      audioRef.current.currentTime = 10;
+      const timer = setInterval(() => setStartTimer((c) => c - 1), 1000);
 
-    return function cleanup() {
-      clearInterval(timer);
-    };
-  }, []);
+      return function cleanup() {
+        clearInterval(timer);
+      };
+    }
+  }, [isWarming]);
 
   useEffect(() => {
-    console.log(startTimer);
-    if (startTimer < 1 && startTimer > -10) {
+    if (isPlay) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
-  }, [startTimer]);
+  }, [isPlay]);
 
   useEffect(() => {
-    if (timer < 0) {
+    if (timer <= 0) {
       setIsLoose(true);
+      audioRef.current.pause();
     } else {
       setIsLoose(false);
     }
   }, [timer]);
+  useEffect(() => {
+    if (isPlay && !isLoose) {
+      setGameState(
+        <img className="animate-spin" src="./src/images/vinyle.png" alt="" />
+      );
+    }
+    if (isPlay && isLoose) {
+      setGameState(<img src={random.album.picture} />);
+    }
+  }, [isLoose, isPlay]);
 
   return (
-    <div className="flex flex-col bg-black bg-opacity-50 items-center justify-center align-middle">
-      <audio ref={audioRef} controls src={random.s3_link}></audio>
+    <div className="flex flex-col text-white shadow p-8 w-full  bg-purple-800 rounded-xl bg-opacity-80 items-center justify-center align-middle">
+      <audio
+        className="hidden"
+        ref={audioRef}
+        controls
+        src={random.s3_link}
+      ></audio>
       <div>Bienvennue JULIEN</div>
-      {startTimer > 0 ? startTimer : "START"}
+      {isWarming ? startTimer : "WAIT"}
       <div className="w-80 h-80 bg-black bg-opacity-50 flex items-center justify-center align-middle">
-        {isLoose ? (
-          <img className="" src={random.album.picture} alt="" />
-        ) : (
-          timer
-        )}
+        {gameState}
       </div>
       <div>TRACK INFOS</div>
-      <ul className="w-full grid grid-cols-2 grid-rows-2">
+      <ul className="w-full grid m-2   p-5 grid-cols-2 grid-rows-2">
         {myArray.map((song, index) => {
           return (
             <li
               key={index}
-              className="flex items-center flex-col justify-center align-middle"
+              className="flex m-2 shadow2  items-center flex-col justify-center align-middle"
             >
               <button
-                className="text-white w-full cursor-pointer"
+                className="text-white w-full   rounded-xl py-2 px-4 cursor-pointer"
                 value={song.title}
                 onClick={handleClick}
               >
                 {song.title}
               </button>
-              <img className="w-28" src={song.album.picture} alt="" />
             </li>
           );
         })}
