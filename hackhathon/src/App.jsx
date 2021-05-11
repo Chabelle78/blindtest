@@ -11,19 +11,6 @@ function App() {
   const [isWarming, setIsWarming] = useState(false);
   const [startTimer, setStartTimer] = useState(3);
 
-  // useEffect(() => {
-  //   if (startTimer <= 0) {
-  //     console.log("okdfgdfqqdfqgh");
-  //     const timer2 = setInterval(() => setTimer((c) => c - 1), 1000);
-
-  //     setIsPlay(true);
-
-  //     return function cleanup() {
-  //       clearInterval(timer2);
-  //     };
-  //   }
-  // }, [timer]);
-
   useEffect(() => {
     if (startTimer <= 0) {
       setIsPlay(true);

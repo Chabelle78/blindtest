@@ -69,6 +69,7 @@ export default function Game({
       setIsLoose(false);
     }
   }, [timer]);
+
   useEffect(() => {
     if (isPlay && !isLoose) {
       setGameState(
