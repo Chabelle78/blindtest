@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
 export default function LoginForm() {
+  const [isLogged, setIslogged] = useState(false);
+
   const {
     register,
     reset,
@@ -17,6 +19,10 @@ export default function LoginForm() {
 
     reset();
   };
+
+  useEffect(() => {
+    setIslogged(!isLogged);
+  }, []);
 
   return (
     <div>
