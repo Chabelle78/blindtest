@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Navbar() {
   return (
-  <div className="w-full h-16 bg-gray-900">
-    <p>Navbar</p>
-  </div>
+    <div className="w-full h-16 bg-gray-900">
+      <p>Navbar</p>
+    </div>
   );
 }
