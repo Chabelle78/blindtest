@@ -9,6 +9,10 @@ export default function Game({
   startTimer,
   setStartTimer,
   setTimer,
+  isWin,
+  setIsWin,
+  isLoose,
+  setIsLoose,
 }) {
   const audioRef = useRef();
   const [gameState, setGameState] = useState();
@@ -26,19 +30,19 @@ export default function Game({
   );
 
   const myArray = [random, random2, random3, random4];
-  const [isLoose, setIsLoose] = useState(false);
+
   const [userChoice, setUserChoice] = useState();
   const [randomResults, setRandomResults] = useState();
 
   const handleClick = (e) => {
-    console.log(e.target.value);
-    console.log([random].filter((song) => song.title.includes(e.target.value)));
     if (
       [random].filter((song) => song.title.includes(e.target.value)).length > 0
     ) {
       console.log("you won !!!");
+      setIsWin(true);
     } else {
       console.log("you loose");
+      setIsWin(false);
     }
   };
 
@@ -59,16 +63,19 @@ export default function Game({
     } else {
       audioRef.current.pause();
     }
-  }, [isPlay]);
+    if (isWin) {
+      audioRef.current.pause();
+    }
+  }, [isPlay, isWin]);
 
   useEffect(() => {
-    if (timer <= 0) {
+    if (timer <= 0 && !isWin) {
       setIsLoose(true);
       audioRef.current.pause();
     } else {
       setIsLoose(false);
     }
-  }, [timer]);
+  }, [timer, isWin, isLoose]);
 
   useEffect(() => {
     if (isPlay && !isLoose) {

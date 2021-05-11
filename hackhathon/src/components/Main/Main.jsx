@@ -14,11 +14,19 @@ export default function Main({
   isWarming,
   setStartTimer,
   startTimer,
+  isWin,
+  setIsWin,
+  isLoose,
+  setIsLoose,
 }) {
   return (
     <div className="main flex items-center align-middle justify-around w-full h-screen">
       <Scores />
       <Game
+        isLoose={isLoose}
+        setIsLoose={setIsLoose}
+        isWin={isWin}
+        setIsWin={setIsWin}
         isWarming={isWarming}
         timer={timer}
         setIsPlay={setIsPlay}
@@ -28,6 +36,8 @@ export default function Main({
         startTimer={startTimer}
       />
       <Count
+        isLoose={isLoose}
+        isWin={isWin}
         setIsWarming={setIsWarming}
         isWarming={isWarming}
         timer={timer}
