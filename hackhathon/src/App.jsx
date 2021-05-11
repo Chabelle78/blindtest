@@ -6,6 +6,16 @@ import Navbar from "./components/Navbar/Navbar";
 function App() {
   const [songs, setSongs] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [timer, setTimer] = useState(10);
+
+  useEffect(() => {
+    const timer = setInterval(() => setTimer((c) => (c -= 1)).toString(), 1000);
+    return function cleanup() {
+      clearInterval(timer);
+    };
+  });
+
+  console.log(timer);
 
   useEffect(() => {
     const getDatas = async () => {
@@ -23,7 +33,7 @@ function App() {
   return (
     <div className="flex flex-col">
       <Navbar />
-      {!isLoading && <Main songs={songs} />}
+      {!isLoading && <Main timer={timer} songs={songs} />}
       <Footer />
     </div>
   );
