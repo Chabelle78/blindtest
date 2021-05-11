@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import "./Game.css";
 
 export default function Game({ songs, timer }) {
   const [startTimer, setStartTimer] = useState(3);
@@ -61,8 +62,13 @@ export default function Game({ songs, timer }) {
   }, [timer]);
 
   return (
-    <div className="flex flex-col bg-purple-800 rounded-xl bg-opacity-80 items-center justify-center align-middle">
-      <audio ref={audioRef} controls src={random.s3_link}></audio>
+    <div className="flex flex-col text-white shadow p-8 bg-purple-800 rounded-xl bg-opacity-80 items-center justify-center align-middle">
+      <audio
+        className="hidden"
+        ref={audioRef}
+        controls
+        src={random.s3_link}
+      ></audio>
       <div>Bienvennue JULIEN</div>
       {startTimer > 0 ? startTimer : "START"}
       <div className="w-80 h-80 bg-black bg-opacity-50 flex items-center justify-center align-middle">
@@ -73,15 +79,15 @@ export default function Game({ songs, timer }) {
         )}
       </div>
       <div>TRACK INFOS</div>
-      <ul className="w-full grid m-2 bg-purple-800 border-2 border-white rounded-xl bg-opacity-50 grid-cols-2 grid-rows-2">
+      <ul className="w-full grid m-2   p-5 grid-cols-2 grid-rows-2">
         {myArray.map((song, index) => {
           return (
             <li
               key={index}
-              className="flex m-2  items-center flex-col justify-center align-middle"
+              className="flex m-2 shadow2  items-center flex-col justify-center align-middle"
             >
               <button
-                className="text-white w-full border-2 border-white rounded-xl py-2 px-4 cursor-pointer"
+                className="text-white w-full   rounded-xl py-2 px-4 cursor-pointer"
                 value={song.title}
                 onClick={handleClick}
               >

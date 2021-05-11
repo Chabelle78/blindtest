@@ -1,0 +1,11 @@
+.shadow {
+    border-radius: 38px;
+    background: linear-gradient(145deg, #503e3e, #443434);
+    box-shadow: 5px 5px 19px #2a2020, -5px -5px 19px #6c5454;
+}
+
+.shadow2 {
+    border-radius: 38px;
+    background: #4b3a3a;
+    box-shadow: 5px 5px 5px #2a2020, -5px -5px 10px #6c5454;
+}
