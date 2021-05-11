@@ -8,7 +8,7 @@ import "./Main.css";
 export default function Main() {
   return (
     <div className="main flex items-center align-middle justify-center w-screen h-screen">
-      <p>Hello world</p>
+      {/* <p>Hello world</p> */}
       <Scores />
       <Game />
       <Upload />

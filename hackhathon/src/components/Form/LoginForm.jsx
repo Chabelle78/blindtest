@@ -22,12 +22,13 @@ export default function LoginForm() {
     <div>
       <form action="submit" onSubmit={handleSubmit(onSubmit)} action="">
         <div>
-          <label htmlFor="pseudo" className="">
+          {/* <label htmlFor="pseudo" className="">
             PSEUDO
-          </label>
+          </label> */}
           <input
+            className="focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none"
             type="text"
-            placeholder="pseudo"
+            placeholder="Pseudo..."
             name="pseudo"
             id="pseudo"
             {...register("pseudo", {
@@ -41,11 +42,12 @@ export default function LoginForm() {
           <ErrorMessage errors={errors} name="pseudo" />
         </div>
         <div>
-          <label htmlFor="password">PASSWORD</label>
+          {/* <label htmlFor="password">PASSWORD</label> */}
           <input
+            className="focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none"
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Password..."
             id="password"
             {...register("password", {
               required: "This is required to play",
@@ -59,7 +61,6 @@ export default function LoginForm() {
         </div>
         <button
           type="submit"
-          // disabled={!isDirty || !isValid}
           className="border rounded-full text-xl bg-yellow-500"
         >
           PLAY
