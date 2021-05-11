@@ -2,13 +2,15 @@ import React from "react";
 import Game from "../Game/Game";
 import Scores from "../Scores/Scores";
 import Upload from "../Upload/Upload";
+import './Main.css'
 
 export default function Main() {
   return (
-    <div className="flex items-center align-middle justify-center">
-      <Scores />
-      <Game />
-      <Upload />
+    <div className="main flex items-center align-middle justify-center w-screen h-screen">
+      <p>Hello world</p>
+      {/* <Scores /> */}
+      {/* <Game />
+      <Upload /> */}
     </div>
   );
 }
