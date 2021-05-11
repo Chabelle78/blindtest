@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function Scores() {
-  return <div></div>;
+  return (
+  <div>
+    <p>Scores</p>
+  </div>
+  );
 }
