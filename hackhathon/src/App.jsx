@@ -9,13 +9,11 @@ function App() {
   const [timer, setTimer] = useState(10);
 
   useEffect(() => {
-    const timer = setInterval(() => setTimer((c) => (c -= 1)).toString(), 1000);
+    const timer = setInterval(() => setTimer((c) => (c -= 1)), 1000);
     return function cleanup() {
       clearInterval(timer);
     };
   });
-
-  console.log(timer);
 
   useEffect(() => {
     const getDatas = async () => {

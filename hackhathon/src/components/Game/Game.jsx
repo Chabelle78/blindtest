@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 export default function Game({ songs, timer }) {
+  const [startTimer, setStartTimer] = useState(3);
+  const audioRef = useRef();
+
   const [random, setRandom] = useState(
     songs[Math.floor(Math.random() * songs.length)]
   );
@@ -32,6 +35,24 @@ export default function Game({ songs, timer }) {
   };
 
   useEffect(() => {
+    audioRef.current.currentTime = 10;
+    const timer = setInterval(() => setStartTimer((c) => c - 1), 1000);
+
+    return function cleanup() {
+      clearInterval(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(startTimer);
+    if (startTimer < 1 && startTimer > -10) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [startTimer]);
+
+  useEffect(() => {
     if (timer < 0) {
       setIsLoose(true);
     } else {
@@ -41,8 +62,9 @@ export default function Game({ songs, timer }) {
 
   return (
     <div className="flex flex-col items-center justify-center align-middle">
-      <audio controls src={random.s3_link}></audio>
+      <audio ref={audioRef} controls src={random.s3_link}></audio>
       <div>Bienvennue JULIEN</div>
+      {startTimer > 0 ? startTimer : "START"}
       <div className="w-80 h-80 bg-black bg-opacity-50 flex items-center justify-center align-middle">
         {isLoose ? (
           <img className="" src={random.album.picture} alt="" />
@@ -51,13 +73,21 @@ export default function Game({ songs, timer }) {
         )}
       </div>
       <div>TRACK INFOS</div>
-      <ul>
+      <ul className="w-full grid grid-cols-2 grid-rows-2">
         {myArray.map((song, index) => {
           return (
-            <li key={index}>
-              <button value={song.title} onClick={handleClick}>
+            <li
+              key={index}
+              className="flex items-center flex-col justify-center align-middle"
+            >
+              <button
+                className="text-white w-full cursor-pointer"
+                value={song.title}
+                onClick={handleClick}
+              >
                 {song.title}
               </button>
+              <img className="w-28" src={song.album.picture} alt="" />
             </li>
           );
         })}
