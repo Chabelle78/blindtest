@@ -7,13 +7,23 @@ function App() {
   const [songs, setSongs] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [timer, setTimer] = useState(10);
+  const [isPlay, setIsPlay] = useState(false);
+  const [isWarming, setIsWarming] = useState(false);
+  const [startTimer, setStartTimer] = useState(3);
 
   useEffect(() => {
-    const timer = setInterval(() => setTimer((c) => (c -= 1)), 1000);
-    return function cleanup() {
-      clearInterval(timer);
-    };
-  });
+    if (startTimer <= 0) {
+      setIsPlay(true);
+      setIsWarming(false);
+      const timer = setInterval(() => setTimer((c) => c - 1), 1000);
+      console.log("PLAY TRUE");
+      console.log(timer);
+      return function cleanup() {
+        clearInterval(timer);
+      };
+      console.log(timer);
+    }
+  }, [startTimer]);
 
   useEffect(() => {
     const getDatas = async () => {
@@ -35,7 +45,19 @@ function App() {
   return (
     <div className="flex flex-col">
       <Navbar />
-      {!isLoading && <Main timer={timer} songs={songs} />}
+      {!isLoading && (
+        <Main
+          setTimer={setTimer}
+          startTimer={startTimer}
+          setStartTimer={setStartTimer}
+          isPlay={isPlay}
+          setIsPlay={setIsPlay}
+          timer={timer}
+          songs={songs}
+          setIsWarming={setIsWarming}
+          isWarming={isWarming}
+        />
+      )}
       <Footer />
     </div>
   );
