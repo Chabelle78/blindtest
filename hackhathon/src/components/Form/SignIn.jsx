@@ -65,7 +65,7 @@ export default function Signin({ getDatas }) {
         </div>
         <div className="">
           <input
-            className={`flex flex-col focus:border-2 border-gray-400 rounded-2xl py-2 px-8 mb-14 focus:outline-none ${
+            className={`flex flex-col focus:border-2   border-gray-400 rounded-2xl py-2 px-8 mb-14 focus:outline-none ${
               errors.passwordsignin ? "bg-red-300 placeholder-red-700" : ""
             }`}
             type="password"
