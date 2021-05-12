@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { HashRouter as Router } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
+import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
+import LoginForm from "./components/Form/LoginForm";
 
 function App() {
   const [songs, setSongs] = useState();
@@ -10,6 +13,7 @@ function App() {
   const [isPlay, setIsPlay] = useState(false);
   const [isWarming, setIsWarming] = useState(false);
   const [startTimer, setStartTimer] = useState(3);
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
     if (startTimer <= 0) {
@@ -43,23 +47,30 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col">
-      <Navbar />
-      {!isLoading && (
-        <Main
-          setTimer={setTimer}
-          startTimer={startTimer}
-          setStartTimer={setStartTimer}
-          isPlay={isPlay}
-          setIsPlay={setIsPlay}
-          timer={timer}
-          songs={songs}
-          setIsWarming={setIsWarming}
-          isWarming={isWarming}
-        />
-      )}
-      <Footer />
-    </div>
+    <Router>
+      <div className="flex flex-col">
+        <Navbar />
+        {isLogged ? (
+          !isLoading && (
+            <Main
+              setTimer={setTimer}
+              startTimer={startTimer}
+              setStartTimer={setStartTimer}
+              isPlay={isPlay}
+              setIsPlay={setIsPlay}
+              timer={timer}
+              songs={songs}
+              setIsWarming={setIsWarming}
+              isWarming={isWarming}
+            />
+          )
+        ) : (
+          <LoginForm setIsLogged={setIsLogged} isLogged={isLogged} />
+        )}
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
