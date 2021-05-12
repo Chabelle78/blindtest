@@ -4,6 +4,20 @@ import { ErrorMessage } from "@hookform/error-message";
 import Main from "../Main/Main";
 
 export default function LoginForm({ isLogged, setIsLogged }) {
+  const [userRes, setUserRes] = useState();
+  const getDatas = async () => {
+    const datas = await (
+      await fetch("http://localhost:4000/api/v1/user/", {
+        method: "GET",
+      })
+    ).json();
+    setUserRes(datas);
+    console.log(datas);
+  };
+  useEffect(() => {
+    getDatas();
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -12,14 +26,16 @@ export default function LoginForm({ isLogged, setIsLogged }) {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    console.log("jesubmite");
-    setIsLogged(true);
-    console.log(isLogged);
-    reset();
+    console.log(userRes.filter((user) => user.pseudo.includes(data.pseudo)));
+    if (
+      userRes.filter((user) => user.pseudo.includes(data.pseudo)).length > 0 &&
+      userRes.filter((user) => user.password.includes(data.password)).length > 0
+    ) {
+      setIsLogged(true);
+    } else {
+      setIsLogged(false);
+    }
   };
-
-  console.log(isLogged);
 
   return (
     <div>
