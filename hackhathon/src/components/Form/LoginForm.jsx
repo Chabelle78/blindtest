@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { Link } from "react-router-dom";
 import Main from "../Main/Main";
 
 export default function LoginForm({ isLogged, setIsLogged }) {

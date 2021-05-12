@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
-import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/Form/LoginForm";
 import PopUp from "./components/PopUp/PopUp";
