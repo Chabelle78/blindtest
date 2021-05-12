@@ -124,6 +124,7 @@ function App() {
       <Footer />
       {isWin && (
         <PopUp
+          random={random}
           getDatas={getDatas}
           setIsWin={setIsWin}
           setIsLoose={setIsLoose}

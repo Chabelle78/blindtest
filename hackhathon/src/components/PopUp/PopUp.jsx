@@ -1,6 +1,13 @@
 import React from "react";
 
-export default function PopUp({ getDatas, setIsLoose, setIsWin, resetGame }) {
+export default function PopUp({
+  getDatas,
+  setIsLoose,
+  setIsWin,
+  resetGame,
+  random,
+}) {
+  console.log(random);
   const handleClick = () => {
     setIsLoose(false);
     setIsWin(false);
@@ -12,6 +19,7 @@ export default function PopUp({ getDatas, setIsLoose, setIsWin, resetGame }) {
         <p className="text-white text-6xl flex justify-center items-center">
           You Won !!
         </p>
+        <img className="w-8/12" src={random.album.picture} alt="" />
         <button
           onClick={resetGame}
           className="text-white border-2 border-white py-2 px-4 rounded-xl hover:opacity-30 "
