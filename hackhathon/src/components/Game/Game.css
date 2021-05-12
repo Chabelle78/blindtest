@@ -54,3 +54,12 @@ backdrop-filter: blur( 20.0px );
 -webkit-backdrop-filter: blur( 20.0px );
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+
+.minHeight{
+    min-height: 80vh;
+}
+
+.link{
+    min-height: 12vh;
+    max-height: 12vh;
+}

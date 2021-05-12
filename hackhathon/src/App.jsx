@@ -76,7 +76,7 @@ function App() {
   };
   const getDatas2 = async () => {
     const data = await (
-      await fetch("http://localhost:4000/api/v1/user/", {
+      await fetch("http://192.168.1.26:4000/api/v1/user/", {
         method: "GET",
         headers: {
           Authorization:
