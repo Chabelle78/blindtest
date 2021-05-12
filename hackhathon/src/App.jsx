@@ -4,7 +4,7 @@ import Main from "./components/Main/Main";
 import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/Form/LoginForm";
 import PopUp from "./components/PopUp/PopUp";
-import './App.css'
+import "./App.css";
 
 function App() {
   const [songs, setSongs] = useState();
@@ -17,12 +17,12 @@ function App() {
   const [isWin, setIsWin] = useState(false);
   const [isLoose, setIsLoose] = useState(false);
   const audioRef = useRef();
-
   const [random, setRandom] = useState("");
   const [random2, setRandom2] = useState("");
   const [random3, setRandom3] = useState("");
   const [random4, setRandom4] = useState("");
   const [shuffled, setShuffled] = useState();
+  const [users, setUsers] = useState();
   let myArray = [random, random2, random3, random4];
   console.log(myArray);
 
@@ -74,9 +74,25 @@ function App() {
     setSongs(data);
     setIsLoading(false);
   };
+  const getDatas2 = async () => {
+    const data = await (
+      await fetch("http://localhost:4000/api/v1/user/", {
+        method: "GET",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNoYWJlbGxlNzgiLCJpYXQiOjE2MjA3NjQ5MDcsImV4cCI6MTYyMDg1MTMwN30.RYp-8fwRb4vhd78JLSHIcp3L8llJ625y9cEla11xHKk",
+        },
+      })
+    ).json();
+    setUsers(data);
+    setIsLoading(false);
+  };
   useEffect(() => {
     getDatas();
+    getDatas2();
+    console.log(users);
   }, []);
+  console.log(users);
   useEffect(() => {
     if (songs) {
       setRandom(songs[Math.floor(Math.random() * songs.length)]);
@@ -99,6 +115,7 @@ function App() {
         !isLoading &&
         shuffled && (
           <Main
+            users={users}
             shuffle={shuffle}
             resetGame={resetGame}
             myArray={shuffled}
@@ -130,7 +147,6 @@ function App() {
         <LoginForm setIsLogged={setIsLogged} isLogged={isLogged} />
       )}
 
-      
       {isWin && (
         <PopUp
           random={random}
