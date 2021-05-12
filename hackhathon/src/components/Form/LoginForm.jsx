@@ -6,6 +6,12 @@ import SignIn from "./SignIn";
 export default function LoginForm({ isLogged, setIsLogged }) {
   const [userRes, setUserRes] = useState();
   const [error, setError] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const getDatas = async () => {
     const datas = await (
@@ -16,16 +22,10 @@ export default function LoginForm({ isLogged, setIsLogged }) {
     setUserRes(datas);
     console.log(datas);
   };
+
   useEffect(() => {
     getDatas();
   }, []);
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
 
   const onSubmit = (data) => {
     console.log(userRes.filter((user) => user.pseudo.includes(data.pseudo)));
@@ -104,7 +104,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
           </div>
         )}
       </form>
-      <SignIn />
+      <SignIn getDatas={getDatas} />
     </div>
   );
 }

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
-export default function Signin() {
-  const [signIn, setSignIn] = useState();
-
+export default function Signin({ getDatas }) {
+  const [pseudo, setPseudo] = useState();
+  const [password, setPassword] = useState();
+  const [isRegistered, setIsRegistered] = useState();
   const {
     register,
     handleSubmit,
@@ -12,10 +13,29 @@ export default function Signin() {
     formState: { errors },
   } = useForm();
 
-  const onSubmitSignin = (data) => {
-    setSignIn();
-  };
+  useEffect(() => {
+    getDatas();
+  }, [isRegistered]);
 
+  const onSubmitSignin = (data) => {
+    setPseudo(data.pseudo);
+    setPassword(data.password);
+    if (pseudo) {
+      fetch("http://localhost:4000/api/v1/user/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ pseudo: pseudo, password: password }),
+      })
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .then((res) => setIsRegistered(true))
+        .catch((err) => console.log(err));
+    }
+
+    getDatas();
+  };
   return (
     <div>
       <p className="">If Not, Please Sign In</p>
@@ -32,9 +52,9 @@ export default function Signin() {
             }`}
             type="text"
             placeholder="Choose a Pseudo..."
-            name="pseudoSignin"
-            id="pseudoSignin"
-            {...register("pseudoSignin", {
+            name="pseudo"
+            id="pseudo"
+            {...register("pseudo", {
               required: "This is required to play",
               minLength: {
                 value: 3,
@@ -42,7 +62,7 @@ export default function Signin() {
               },
             })}
           />
-          <ErrorMessage errors={errors} name="pseudoSignin" />
+          <ErrorMessage errors={errors} name="pseudo" />
         </div>
         <div className="">
           <input
@@ -52,8 +72,8 @@ export default function Signin() {
             type="password"
             name="passwordsignin"
             placeholder="Choose a Password..."
-            id="passwordsignin"
-            {...register("passwordsignin", {
+            id="password"
+            {...register("password", {
               required: "This is required to play",
               minLength: {
                 value: 3,
@@ -61,7 +81,7 @@ export default function Signin() {
               },
             })}
           />
-          <ErrorMessage errors={errors} name="passwordsignin" />
+          <ErrorMessage errors={errors} name="password" />
         </div>
         <button
           type="submit"
