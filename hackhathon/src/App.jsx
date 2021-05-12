@@ -10,6 +10,8 @@ function App() {
   const [isPlay, setIsPlay] = useState(false);
   const [isWarming, setIsWarming] = useState(false);
   const [startTimer, setStartTimer] = useState(3);
+  const [isWin, setIsWin] = useState(false);
+  const [isLoose, setIsLoose] = useState(false);
 
   useEffect(() => {
     if (startTimer <= 0) {
@@ -47,6 +49,10 @@ function App() {
       <Navbar />
       {!isLoading && (
         <Main
+          isLoose={isLoose}
+          setIsLoose={setIsLoose}
+          isWin={isWin}
+          setIsWin={setIsWin}
           setTimer={setTimer}
           startTimer={startTimer}
           setStartTimer={setStartTimer}
