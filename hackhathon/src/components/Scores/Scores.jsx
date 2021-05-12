@@ -1,7 +1,7 @@
 import React from "react";
 import UserScore from "./UserScore";
 import "../Game/Game.css";
-import "./Score.css"
+import "./Score.css";
 
 export default function Scores({ users }) {
   return (
@@ -10,7 +10,7 @@ export default function Scores({ users }) {
         <h2 className="text-white h-12 flex items-center  border-b border-purple-400 rounded-t-xl justify-center ">
           High Score
         </h2>
-        <div className="overflow-y-auto h-80">
+        <div className="overflow-y-auto sidebar h-80">
           <ul className="text-white text-sm text-center">
             {users.map((user) => {
               return (
