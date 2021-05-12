@@ -81,18 +81,22 @@ export default function Game({
     } else if (isPlay && isLoose) {
       setGameState(<img src={random.album.picture} />);
     } else {
+
       setGameState(  <img src="./src/images/vinyle.png" alt="" />);
     }
   }, [isLoose, isPlay]);
 
+
   return ( 
-    <div className="flex flex-col text-white glass items-center justify-center align-middle">
-     
-      {isWarming ? <div className="mt-6 border text-center rounded-full p-7 w-20 mx-auto ">
+    <div className="flex flex-col text-white glass items-center justify-center align-middle minHeight">
+      {isWarming ? <div className=" text-center mx-auto my-auto">
         {startTimer}
+
       </div> : ""}
       <div className="w-64 h-72 my-8 bg-black bg-opacity-50 flex items-center justify-center align-middle rounded-xl">
       
+
+
         {gameState}
       </div>
       <ul className="w-full grid m-2   p-5 grid-cols-2 grid-rows-2 ">
@@ -100,10 +104,10 @@ export default function Game({
           return (
             <li
               key={index}
-              className="flex m-2 glass py-1 items-center flex-col justify-center align-middle"
+              className="flex m-2 glass py-2 items-center flex-col justify-center align-middle link"
             >
               <button
-                className="text-white w-full   rounded-xl py-2 px-4 cursor-pointer focus:outline-none"
+                className="text-white w-full text-sm  rounded-xl py-3 px-4 cursor-pointer focus:outline-none"
                 value={song.title}
                 onClick={handleClick}
               >
