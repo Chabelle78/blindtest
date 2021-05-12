@@ -22,6 +22,12 @@ function App() {
 
   const myArray = [random, random2, random3, random4];
 
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  shuffle(myArray);
+
   useEffect(() => {
     if (startTimer <= 0) {
       setIsPlay(true);
