@@ -49,7 +49,7 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col">
-        <Navbar />
+        <Navbar setIsLogged={setIsLogged} isLogged={isLogged} />
         {isLogged ? (
           !isLoading && (
             <Main
