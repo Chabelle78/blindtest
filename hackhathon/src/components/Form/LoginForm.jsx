@@ -9,7 +9,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
 
   const getDatas = async () => {
     const datas = await (
-      await fetch("http://192.168.1.26:4000/api/v1/user/", {
+      await fetch("http://localhost:4000/api/v1/user/", {
         method: "GET",
       })
     ).json();
