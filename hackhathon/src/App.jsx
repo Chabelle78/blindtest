@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
 import Navbar from "./components/Navbar/Navbar";
+import './App.css'
 
 function App() {
   const [songs, setSongs] = useState();
@@ -33,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="apps flex flex-col">
       <Navbar />
       {!isLoading && <Main timer={timer} songs={songs} />}
       <Footer />
