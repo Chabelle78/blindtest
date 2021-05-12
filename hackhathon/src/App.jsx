@@ -84,6 +84,7 @@ function App() {
       <Navbar />
       {!isLoading && (
         <Main
+          resetGame={resetGame}
           myArray={myArray}
           audioRef={audioRef}
           isLoose={isLoose}

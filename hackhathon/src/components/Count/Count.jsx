@@ -7,6 +7,7 @@ export default function count({
   isWarming,
   isWin,
   isLoose,
+  resetGame,
 }) {
   console.log(isLoose);
   const handleClick = () => {
@@ -32,8 +33,14 @@ export default function count({
   }, [isWin, isLoose, isPlay]);
 
   return (
-    <div className="text-white w-full flex items-center align-middle justify-center text-9xl">
+    <div className="text-white w-full flex flex-col items-center align-middle justify-center text-9xl">
       {isPlay && !isWin && !isLoose ? timer : gameState}
+      <button
+        className="text-4xl border-2 border-white  rounded-xl my-4"
+        onClick={resetGame}
+      >
+        RESET
+      </button>
     </div>
   );
 }

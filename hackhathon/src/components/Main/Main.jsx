@@ -6,6 +6,7 @@ import Scores from "../Scores/Scores";
 import "./Main.css";
 
 export default function Main({
+  resetGame,
   songs,
   timer,
   isPlay,
@@ -56,6 +57,7 @@ export default function Main({
         startTimer={startTimer}
       />
       <Count
+        resetGame={resetGame}
         isLoose={isLoose}
         isWin={isWin}
         setIsWarming={setIsWarming}

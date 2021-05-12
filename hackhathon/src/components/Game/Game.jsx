@@ -76,9 +76,10 @@ export default function Game({
       setGameState(
         <img className="animate-spin" src="./src/images/vinyle.png" alt="" />
       );
-    }
-    if (isPlay && isLoose) {
+    } else if (isPlay && isLoose) {
       setGameState(<img src={random.album.picture} />);
+    } else {
+      setGameState();
     }
   }, [isLoose, isPlay]);
 
