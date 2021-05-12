@@ -23,9 +23,10 @@ function App() {
   const [random4, setRandom4] = useState("");
   const [shuffled, setShuffled] = useState();
   const [users, setUsers] = useState();
+  const [myUser, setMySUer] = useState();
   let myArray = [random, random2, random3, random4];
   console.log(myArray);
-
+  console.log(isLogged);
   useEffect(() => {
     if (startTimer <= 0) {
       setIsPlay(true);
@@ -115,6 +116,7 @@ function App() {
         !isLoading &&
         shuffled && (
           <Main
+            isLogged={isLogged}
             users={users}
             shuffle={shuffle}
             resetGame={resetGame}
@@ -149,6 +151,7 @@ function App() {
 
       {isWin && (
         <PopUp
+          isLogged={isLogged}
           random={random}
           getDatas={getDatas}
           setIsWin={setIsWin}

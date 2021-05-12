@@ -29,13 +29,13 @@ export default function Signin({ getDatas }) {
         body: JSON.stringify({ pseudo: pseudo, password: password }),
       })
         .then((res) => res.json())
-        .then((res) => console.log(res))
         .then((res) => setIsRegistered(true))
         .catch((err) => console.log(err));
     }
 
     getDatas();
   };
+
   return (
     <div>
       <p className="">If Not, Please Sign In</p>

@@ -4,6 +4,7 @@ import Game from "../Game/Game";
 import Scores from "../Scores/Scores";
 
 export default function Main({
+  isLogged,
   resetGame,
   songs,
   timer,
@@ -32,7 +33,7 @@ export default function Main({
 }) {
   return (
     <div className="grid grid-cols-3 items-center align-middle justify-around w-full h-screen">
-      <Scores users={users} />
+      <Scores users={users} isLogged={isLogged} />
       <Game
         shuffle={shuffle}
         myArray={myArray}

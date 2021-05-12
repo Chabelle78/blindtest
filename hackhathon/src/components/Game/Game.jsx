@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import './Game.css'
+import "./Game.css";
 
 export default function Game({
   songs,
@@ -35,6 +35,7 @@ export default function Game({
       [random].filter((song) => song.title.includes(e.target.value)).length > 0
     ) {
       console.log("you won !!!");
+
       setIsWin(true);
     } else {
       console.log("you loose");
@@ -85,14 +86,19 @@ export default function Game({
     }
   }, [isLoose, isPlay]);
 
-  return ( 
+  return (
     <div className="flex flex-col text-white glass items-center justify-center align-middle">
-     
-      {isWarming ? <div className="mt-6 border text-center rounded-full p-7 w-20 mx-auto ">
-        {startTimer}
-      </div> : ""}
-      <div className="w-64 h-72 my-8 bg-black bg-opacity-50 flex items-center justify-center align-middle rounded-xl
-">
+      {isWarming ? (
+        <div className="mt-6 border text-center rounded-full p-7 w-20 mx-auto ">
+          {startTimer}
+        </div>
+      ) : (
+        ""
+      )}
+      <div
+        className="w-64 h-72 my-8 bg-black bg-opacity-50 flex items-center justify-center align-middle rounded-xl
+"
+      >
         {gameState}
       </div>
       <ul className="w-full grid m-2   p-5 grid-cols-2 grid-rows-2 ">

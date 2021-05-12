@@ -2,7 +2,7 @@ import React from "react";
 import UserScore from "./UserScore";
 import "../Game/Game.css";
 
-export default function Scores({ users }) {
+export default function Scores({ users, isLogged }) {
   return (
     <div className="flex flex-col relative items-center align-middle justify-center h-full">
       <div className="w-72 h-2/4 glassScore relative rounded-xl border-2 flex-col ">

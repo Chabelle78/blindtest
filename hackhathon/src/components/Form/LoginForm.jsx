@@ -3,9 +3,15 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import SignIn from "./SignIn";
 
-export default function LoginForm({ isLogged, setIsLogged }) {
+export default function LoginForm({
+  isLogged,
+  setIsLogged,
+  myUser,
+  setMyUser,
+}) {
   const [userRes, setUserRes] = useState();
   const [error, setError] = useState(false);
+  const [userId, serUserId] = useState();
   const {
     register,
     handleSubmit,
@@ -28,12 +34,13 @@ export default function LoginForm({ isLogged, setIsLogged }) {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(userRes.filter((user) => user.pseudo.includes(data.pseudo)));
     if (
       userRes.filter((user) => user.pseudo.includes(data.pseudo)).length > 0 &&
       userRes.filter((user) => user.password.includes(data.password)).length > 0
     ) {
-      setIsLogged(true);
+      setIsLogged(
+        userRes.filter((user) => user.pseudo.includes(data.pseudo))[0].id
+      );
     } else {
       setIsLogged(false);
       setError(true);
