@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import Main from "../Main/Main";
+import SignIn from "./SignIn";
 
 export default function LoginForm({ isLogged, setIsLogged }) {
   const [userRes, setUserRes] = useState();
+  const [error, setError] = useState(false);
+
   const getDatas = async () => {
     const datas = await (
       await fetch("http://localhost:4000/api/v1/user/", {
@@ -34,12 +36,16 @@ export default function LoginForm({ isLogged, setIsLogged }) {
       setIsLogged(true);
     } else {
       setIsLogged(false);
+      setError(true);
+      console.log(isLogged);
     }
   };
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="w-2/4 my-44 text-5xl text-center text-white">Welcome to the Super Blind Test</h1>
+      <h1 className="w-2/4 my-44 text-5xl text-center text-white">
+        Welcome to the Super Blind Test
+      </h1>
       <form
         action="submit"
         onSubmit={handleSubmit(onSubmit)}
@@ -65,7 +71,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
           />
           <ErrorMessage errors={errors} name="pseudo" />
         </div>
-        <div className="flex flex-col mb-2">
+        <div className="">
           <input
             className={`focus:border-2 border-gray-400 rounded-full py-2 px-8 mb-14 focus:outline-none ${
               errors.password ? "bg-red-300 placeholder-red-700" : ""
@@ -90,9 +96,15 @@ export default function LoginForm({ isLogged, setIsLogged }) {
            bg-black rounded-2xl px-8 py-2 
            hover:bg-gray-700 text-white text-lg "
         >
-          PLAY
+          LOGIN
         </button>
+        {error && (
+          <div>
+            <p className="text-xl text-red-500">INCORRECT LOGIN OR PASSWORD </p>
+          </div>
+        )}
       </form>
+      <SignIn />
     </div>
   );
 }
