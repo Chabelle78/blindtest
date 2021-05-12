@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import './Game.css'
+import "./Game.css";
 
 export default function Game({
   songs,
@@ -81,14 +81,21 @@ export default function Game({
     } else if (isPlay && isLoose) {
       setGameState(<img src={random.album.picture} />);
     } else {
-      setGameState();
-    }  }, [isLoose, isPlay]);
+      setGameState(<img src="./src/images/vinyle.png"></img>);
+    }
+  }, [isLoose, isPlay]);
 
-  return ( 
+  return (
     <div className="flex flex-col text-white glass items-center justify-center align-middle minHeight">
-      {isWarming ? <div className=" text-center mx-auto my-auto">
-        {startTimer}
-      </div> : <div className="mx-auto my-auto"> <p>GO</p></div>}
+      <p>Welcome</p>
+      {isWarming ? (
+        <div className=" text-center mx-auto my-auto">{startTimer}</div>
+      ) : (
+        <div className="mx-auto my-auto">
+          {" "}
+          <p>GO</p>
+        </div>
+      )}
       <div className="w-64 h-72 bg-black bg-opacity-50 flex items-center justify-center align-middle rounded-xl">
         {gameState}
       </div>

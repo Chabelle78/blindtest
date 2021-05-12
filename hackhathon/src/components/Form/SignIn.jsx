@@ -38,7 +38,7 @@ export default function Signin({ getDatas }) {
   };
   return (
     <div className="ml-16">
-        <form
+      <form
         action="submit"
         onSubmit={handleSubmit(onSubmitSignin)}
         action=""
@@ -90,6 +90,12 @@ export default function Signin({ getDatas }) {
         >
           SIGN IN
         </button>
+        {isRegistered && (
+          <div className="text-red-800 text-xl">
+            {" "}
+            User succesfully registered !
+          </div>
+        )}
       </form>
     </div>
   );
