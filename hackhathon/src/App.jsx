@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
 import Navbar from "./components/Navbar/Navbar";
+import LoginForm from "./components/Form/LoginForm";
 import PopUp from "./components/PopUp/PopUp";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const [isPlay, setIsPlay] = useState(false);
   const [isWarming, setIsWarming] = useState(false);
   const [startTimer, setStartTimer] = useState(3);
+  const [isLogged, setIsLogged] = useState(false);
   const [isWin, setIsWin] = useState(false);
   const [isLoose, setIsLoose] = useState(false);
   const audioRef = useRef();
@@ -91,36 +93,42 @@ function App() {
         controls
         src={random.s3_link}
       ></audio>
-      <Navbar />
-      {!isLoading && shuffled && (
-        <Main
-          shuffle={shuffle}
-          resetGame={resetGame}
-          myArray={shuffled}
-          audioRef={audioRef}
-          isLoose={isLoose}
-          setIsLoose={setIsLoose}
-          isWin={isWin}
-          setIsWin={setIsWin}
-          setTimer={setTimer}
-          startTimer={startTimer}
-          setStartTimer={setStartTimer}
-          isPlay={isPlay}
-          setIsPlay={setIsPlay}
-          timer={timer}
-          songs={songs}
-          setIsWarming={setIsWarming}
-          isWarming={isWarming}
-          random={random}
-          random2={random2}
-          random3={random3}
-          random4={random4}
-          setRandom={setRandom}
-          setRandom2={setRandom2}
-          setRandom3={setRandom3}
-          setRandom4={setRandom4}
-        />
+      <Navbar setIsLogged={setIsLogged} isLogged={isLogged} />
+      {isLogged ? (
+        !isLoading &&
+        shuffled && (
+          <Main
+            shuffle={shuffle}
+            resetGame={resetGame}
+            myArray={shuffled}
+            audioRef={audioRef}
+            isLoose={isLoose}
+            setIsLoose={setIsLoose}
+            isWin={isWin}
+            setIsWin={setIsWin}
+            setTimer={setTimer}
+            startTimer={startTimer}
+            setStartTimer={setStartTimer}
+            isPlay={isPlay}
+            setIsPlay={setIsPlay}
+            timer={timer}
+            songs={songs}
+            setIsWarming={setIsWarming}
+            isWarming={isWarming}
+            random={random}
+            random2={random2}
+            random3={random3}
+            random4={random4}
+            setRandom={setRandom}
+            setRandom2={setRandom2}
+            setRandom3={setRandom3}
+            setRandom4={setRandom4}
+          />
+        )
+      ) : (
+        <LoginForm setIsLogged={setIsLogged} isLogged={isLogged} />
       )}
+
       <Footer />
       {isWin && (
         <PopUp

@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { Link } from "react-router-dom";
+import Main from "../Main/Main";
 
-export default function LoginForm() {
-  const [isLogged, setIsLogged] = useState(false);
+export default function LoginForm({ isLogged, setIsLogged }) {
   const {
     register,
     handleSubmit,
     reset,
-
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
     console.log("jesubmite");
-    setIsLogged(!isLogged);
+    setIsLogged(true);
     console.log(isLogged);
     reset();
   };
+
+  console.log(isLogged);
 
   return (
     <div>
@@ -67,14 +67,12 @@ export default function LoginForm() {
           />
           <ErrorMessage errors={errors} name="password" />
         </div>
-
         <button
           type="submit"
           className="border-4 border-black 
            bg-black rounded-2xl px-4 py-2 
            hover:bg-gray-700 text-white text-lg "
         >
-          {/* {  {isLogged ? <Link to={`/${user}`}> : ""}} */}
           PLAY
         </button>
       </form>
