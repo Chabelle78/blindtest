@@ -22,7 +22,7 @@ export default function Navbar({ isLogged, setIsLogged }) {
         </div>
       ) : (
         <div>
-          <div className="w-full h-16 bg-black fixed bg-opacity-60">
+          <div className="w-full h-16  fixed">
             <div className="flex justify-end items-center h-full"></div>
           </div>
         </div>
