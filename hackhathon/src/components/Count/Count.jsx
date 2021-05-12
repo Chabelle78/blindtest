@@ -29,7 +29,7 @@ export default function count({
     } else if (isLoose) {
       setGameState(<div>YOU LOOSE BOOOH !</div>);
     }
-  }, [isWin, isLoose]);
+  }, [isWin, isLoose, isPlay]);
 
   return (
     <div className="text-white w-full flex items-center align-middle justify-center text-9xl">

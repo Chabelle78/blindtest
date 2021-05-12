@@ -18,11 +18,31 @@ export default function Main({
   setIsWin,
   isLoose,
   setIsLoose,
+  audioRef,
+  setRandom,
+  setRandom2,
+  setRandom3,
+  setRandom4,
+  random,
+  random2,
+  random3,
+  random4,
+  myArray,
 }) {
   return (
     <div className="main flex items-center align-middle justify-around w-full h-screen">
       <Scores />
       <Game
+        myArray={myArray}
+        setRandom={setRandom}
+        setRandom2={setRandom2}
+        setRandom3={setRandom3}
+        setRandom4={setRandom4}
+        random={random}
+        random2={random2}
+        random3={random3}
+        random4={random4}
+        audioRef={audioRef}
         isLoose={isLoose}
         setIsLoose={setIsLoose}
         isWin={isWin}
