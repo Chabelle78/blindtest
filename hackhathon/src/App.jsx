@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { HashRouter as Router } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/Form/LoginForm";
+import PopUp from "./components/PopUp/PopUp";
 
 function App() {
   const [songs, setSongs] = useState();
@@ -14,6 +14,16 @@ function App() {
   const [isWarming, setIsWarming] = useState(false);
   const [startTimer, setStartTimer] = useState(3);
   const [isLogged, setIsLogged] = useState(false);
+  const [isWin, setIsWin] = useState(false);
+  const [isLoose, setIsLoose] = useState(false);
+  const audioRef = useRef();
+
+  const [random, setRandom] = useState("");
+  const [random2, setRandom2] = useState("");
+  const [random3, setRandom3] = useState("");
+  const [random4, setRandom4] = useState("");
+
+  const myArray = [random, random2, random3, random4];
 
   useEffect(() => {
     if (startTimer <= 0) {
@@ -29,48 +39,95 @@ function App() {
     }
   }, [startTimer]);
 
+  const resetGame = () => {
+    audioRef.current.pause();
+    setIsWin(false);
+    setIsLoading(false);
+    setIsWarming(false);
+    setIsLoose(false);
+    setIsPlay(false);
+    setStartTimer(3);
+    setTimer(10);
+    getDatas();
+  };
+
+  const getDatas = async () => {
+    const data = await (
+      await fetch("https://api-bazify.basile.vernouillet.dev/api/v1/songs", {
+        method: "GET",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNoYWJlbGxlNzgiLCJpYXQiOjE2MjA3NjQ5MDcsImV4cCI6MTYyMDg1MTMwN30.RYp-8fwRb4vhd78JLSHIcp3L8llJ625y9cEla11xHKk",
+        },
+      })
+    ).json();
+    setSongs(data);
+    setIsLoading(false);
+  };
   useEffect(() => {
-    const getDatas = async () => {
-      const data = await (
-        await fetch("https://api-bazify.basile.vernouillet.dev/api/v1/songs", {
-          method: "GET",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNoYWJlbGxlNzgiLCJpYXQiOjE2MjA3NjQ5MDcsImV4cCI6MTYyMDg1MTMwN30.RYp-8fwRb4vhd78JLSHIcp3L8llJ625y9cEla11xHKk",
-          },
-        })
-      ).json();
-      setSongs(data);
-      setIsLoading(false);
-    };
     getDatas();
   }, []);
+  useEffect(() => {
+    if (songs) {
+      setRandom(songs[Math.floor(Math.random() * songs.length)]);
+      setRandom2(songs[Math.floor(Math.random() * songs.length)]);
+      setRandom3(songs[Math.floor(Math.random() * songs.length)]);
+      setRandom4(songs[Math.floor(Math.random() * songs.length)]);
+    }
+  }, [songs]);
 
   return (
-    <Router>
-      <div className="flex flex-col">
-        <Navbar setIsLogged={setIsLogged} isLogged={isLogged} />
-        {isLogged ? (
-          !isLoading && (
-            <Main
-              setTimer={setTimer}
-              startTimer={startTimer}
-              setStartTimer={setStartTimer}
-              isPlay={isPlay}
-              setIsPlay={setIsPlay}
-              timer={timer}
-              songs={songs}
-              setIsWarming={setIsWarming}
-              isWarming={isWarming}
-            />
-          )
-        ) : (
-          <LoginForm setIsLogged={setIsLogged} isLogged={isLogged} />
-        )}
+    <div className="flex flex-col">
+      <audio
+        className="hidden"
+        ref={audioRef}
+        controls
+        src={random.s3_link}
+      ></audio>
+      <Navbar setIsLogged={setIsLogged} isLogged={isLogged} />
+      {isLogged ? (
+        !isLoading && (
+          <Main
+            resetGame={resetGame}
+            myArray={myArray}
+            audioRef={audioRef}
+            isLoose={isLoose}
+            setIsLoose={setIsLoose}
+            isWin={isWin}
+            setIsWin={setIsWin}
+            setTimer={setTimer}
+            startTimer={startTimer}
+            setStartTimer={setStartTimer}
+            isPlay={isPlay}
+            setIsPlay={setIsPlay}
+            timer={timer}
+            songs={songs}
+            setIsWarming={setIsWarming}
+            isWarming={isWarming}
+            random={random}
+            random2={random2}
+            random3={random3}
+            random4={random4}
+            setRandom={setRandom}
+            setRandom2={setRandom2}
+            setRandom3={setRandom3}
+            setRandom4={setRandom4}
+          />
+        )
+      ) : (
+        <LoginForm setIsLogged={setIsLogged} isLogged={isLogged} />
+      )}
 
-        <Footer />
-      </div>
-    </Router>
+      <Footer />
+      {isWin && (
+        <PopUp
+          getDatas={getDatas}
+          setIsWin={setIsWin}
+          setIsLoose={setIsLoose}
+          resetGame={resetGame}
+        />
+      )}
+    </div>
   );
 }
 

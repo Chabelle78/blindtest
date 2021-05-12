@@ -9,36 +9,34 @@ export default function Game({
   startTimer,
   setStartTimer,
   setTimer,
+  isWin,
+  setIsWin,
+  isLoose,
+  setIsLoose,
+  audioRef,
+  random,
+  random2,
+  random3,
+  random4,
+  setRandom,
+  setRandom2,
+  setRandom3,
+  myArray,
+  setRandom4,
 }) {
-  const audioRef = useRef();
-  const [gameState, setGameState] = useState();
-  const [random, setRandom] = useState(
-    songs[Math.floor(Math.random() * songs.length)]
-  );
-  const [random2, setRandom2] = useState(
-    songs[Math.floor(Math.random() * songs.length)]
-  );
-  const [random3, setRandom3] = useState(
-    songs[Math.floor(Math.random() * songs.length)]
-  );
-  const [random4, setRandom4] = useState(
-    songs[Math.floor(Math.random() * songs.length)]
-  );
-
-  const myArray = [random, random2, random3, random4];
-  const [isLoose, setIsLoose] = useState(false);
   const [userChoice, setUserChoice] = useState();
   const [randomResults, setRandomResults] = useState();
+  const [gameState, setGameState] = useState();
 
   const handleClick = (e) => {
-    console.log(e.target.value);
-    console.log([random].filter((song) => song.title.includes(e.target.value)));
     if (
       [random].filter((song) => song.title.includes(e.target.value)).length > 0
     ) {
       console.log("you won !!!");
+      setIsWin(true);
     } else {
       console.log("you loose");
+      setIsWin(false);
     }
   };
 
@@ -59,36 +57,34 @@ export default function Game({
     } else {
       audioRef.current.pause();
     }
-  }, [isPlay]);
+    if (isWin) {
+      audioRef.current.pause();
+    }
+  }, [isPlay, isWin]);
 
   useEffect(() => {
-    if (timer <= 0) {
+    if (timer <= 0 && !isWin) {
       setIsLoose(true);
       audioRef.current.pause();
     } else {
       setIsLoose(false);
     }
-  }, [timer]);
+  }, [timer, isWin, isLoose]);
 
   useEffect(() => {
     if (isPlay && !isLoose) {
       setGameState(
         <img className="animate-spin" src="./src/images/vinyle.png" alt="" />
       );
-    }
-    if (isPlay && isLoose) {
+    } else if (isPlay && isLoose) {
       setGameState(<img src={random.album.picture} />);
+    } else {
+      setGameState();
     }
   }, [isLoose, isPlay]);
 
   return (
     <div className="flex flex-col text-white shadow p-8 w-full  bg-purple-800 rounded-xl bg-opacity-80 items-center justify-center align-middle">
-      <audio
-        className="hidden"
-        ref={audioRef}
-        controls
-        src={random.s3_link}
-      ></audio>
       <div>Bienvennue JULIEN</div>
       {isWarming ? startTimer : "WAIT"}
       <div className="w-80 h-80 bg-black bg-opacity-50 flex items-center justify-center align-middle">
