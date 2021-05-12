@@ -3,8 +3,6 @@ import Count from "../Count/Count";
 import Game from "../Game/Game";
 import Scores from "../Scores/Scores";
 
-
-
 export default function Main({
   resetGame,
   songs,
@@ -30,10 +28,11 @@ export default function Main({
   random4,
   myArray,
   shuffle,
+  users,
 }) {
   return (
     <div className="grid grid-cols-3 items-center align-middle justify-around w-full h-screen">
-      <Scores />
+      <Scores users={users} />
       <Game
         shuffle={shuffle}
         myArray={myArray}
