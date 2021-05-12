@@ -67,7 +67,6 @@ export default function LoginForm({ isLogged, setIsLogged }) {
           />
           <ErrorMessage errors={errors} name="password" />
         </div>
-        {isLogged && <Main />}
         <button
           type="submit"
           className="border-4 border-black 
