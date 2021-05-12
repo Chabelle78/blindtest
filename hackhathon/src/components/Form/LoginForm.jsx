@@ -32,7 +32,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
       >
         <div className="flex flex-col mb-4">
           <input
-            className={`focus:border-2 border-gray-400 rounded-full py-2 px-8 mb-2 focus:outline-none ${
+            className={`focus:border-2 border-gray-400 rounded-2xl py-2 px-8 mb-2 focus:outline-none ${
               errors.pseudo ? "bg-red-300 placeholder-red-700" : ""
             }`}
             type="text"
@@ -51,7 +51,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
         </div>
         <div className="flex flex-col mb-2">
           <input
-            className={`focus:border-2 border-gray-400 rounded-full py-2 px-8 mb-14 focus:outline-none ${
+            className={`focus:border-2 border-gray-400 rounded-2xl py-2 px-8 mb-14 focus:outline-none ${
               errors.password ? "bg-red-300 placeholder-red-700" : ""
             }`}
             type="password"
