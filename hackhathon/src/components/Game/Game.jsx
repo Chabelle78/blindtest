@@ -87,7 +87,6 @@ export default function Game({
 
   return (
     <div className="flex flex-col text-white glass items-center justify-center align-middle minHeight">
-      <p>Welcome</p>
       {isWarming ? (
         <div className=" text-center mx-auto my-auto">{startTimer}</div>
       ) : (
