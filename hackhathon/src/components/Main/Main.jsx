@@ -3,7 +3,7 @@ import Count from "../Count/Count";
 import Game from "../Game/Game";
 import Scores from "../Scores/Scores";
 
-import "./Main.css";
+
 
 export default function Main({
   resetGame,
@@ -32,7 +32,7 @@ export default function Main({
   shuffle,
 }) {
   return (
-    <div className="main flex items-center align-middle justify-around w-full h-screen">
+    <div className="grid grid-cols-3 items-center align-middle justify-around w-full h-screen">
       <Scores />
       <Game
         shuffle={shuffle}

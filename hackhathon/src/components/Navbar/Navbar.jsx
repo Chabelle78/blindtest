@@ -1,5 +1,6 @@
 import React from "react";
 import { LogoutIcon } from "@heroicons/react/solid";
+import '../Game/Game.css'
 
 export default function Navbar({ isLogged, setIsLogged }) {
   const handleClick = () => {
@@ -9,7 +10,7 @@ export default function Navbar({ isLogged, setIsLogged }) {
   return (
     <>
       {isLogged ? (
-        <div className="w-full h-16 bg-gray-900">
+        <div className="w-full h-16 glassNav fixed ">
           <div className="flex justify-end items-center h-full">
             <p className="mr-5 text-xl text-white flex items-center">
               UserName
@@ -21,7 +22,7 @@ export default function Navbar({ isLogged, setIsLogged }) {
         </div>
       ) : (
         <div>
-          <div className="w-full h-16 bg-gray-900">
+          <div className="w-full h-16 bg-black fixed bg-opacity-60">
             <div className="flex justify-end items-center h-full"></div>
           </div>
         </div>

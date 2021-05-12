@@ -1,0 +1,56 @@
+.shadow{
+    box-shadow:  5px 5px 0px #0b0b0b,
+             -5px -5px 0px #292929;
+}
+
+.glass{
+    background: rgba( 85, 60, 154, 0.65 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 20.0px );
+-webkit-backdrop-filter: blur( 20.0px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.glassScore{
+    background: rgba( 85, 60, 154, 0.65 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 20.0px );
+-webkit-backdrop-filter: blur( 20.0px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.glassPlay{
+    background: rgba( 85, 60, 154, 0.65 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 20.0px );
+-webkit-backdrop-filter: blur( 20.0px );
+
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.glassUserScore{
+    background: rgba(201, 40, 188, 0.65);
+box-shadow: 0 8px 32px 0 rgba(183, 184, 206, 0.37);
+backdrop-filter: blur( 20.0px );
+-webkit-backdrop-filter: blur( 20.0px );
+
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.glassNav{
+    background: rgba( 85, 60, 154, );
+
+backdrop-filter: blur( 20.0px );
+-webkit-backdrop-filter: blur( 20.0px );
+
+}
+
+.glassFooter{
+    background: rgba( 85, 60, 154, );
+
+backdrop-filter: blur( 20.0px );
+-webkit-backdrop-filter: blur( 20.0px );
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
