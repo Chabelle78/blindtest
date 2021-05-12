@@ -42,10 +42,6 @@ export default function Game({
   };
 
   useEffect(() => {
-    shuffle(myArray);
-  }, []);
-
-  useEffect(() => {
     if (isWarming) {
       audioRef.current.currentTime = 10;
       const timer = setInterval(() => setStartTimer((c) => c - 1), 1000);
@@ -89,9 +85,7 @@ export default function Game({
   }, [isLoose, isPlay]);
 
   return (
-    
     <div className="flex flex-col text-white shadow p-8 w-full  bg-purple-800 rounded-xl bg-opacity-80 items-center justify-center align-middle">
-     
       <div>Bienvennue JULIEN</div>
       {isWarming ? startTimer : "WAIT"}
       <div className="w-80 h-80 bg-black bg-opacity-50 flex items-center justify-center align-middle">
