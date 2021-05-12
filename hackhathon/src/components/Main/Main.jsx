@@ -29,11 +29,13 @@ export default function Main({
   random3,
   random4,
   myArray,
+  shuffle,
 }) {
   return (
     <div className="main flex items-center align-middle justify-around w-full h-screen">
       <Scores />
       <Game
+        shuffle={shuffle}
         myArray={myArray}
         setRandom={setRandom}
         setRandom2={setRandom2}

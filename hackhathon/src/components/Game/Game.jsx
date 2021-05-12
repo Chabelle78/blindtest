@@ -23,6 +23,7 @@ export default function Game({
   setRandom3,
   myArray,
   setRandom4,
+  shuffle,
 }) {
   const [userChoice, setUserChoice] = useState();
   const [randomResults, setRandomResults] = useState();
@@ -39,6 +40,10 @@ export default function Game({
       setIsWin(false);
     }
   };
+
+  useEffect(() => {
+    shuffle(myArray);
+  }, []);
 
   useEffect(() => {
     if (isWarming) {
