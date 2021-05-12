@@ -81,15 +81,22 @@ export default function Game({
     } else if (isPlay && isLoose) {
       setGameState(<img src={random.album.picture} />);
     } else {
-      setGameState();
-    }  }, [isLoose, isPlay]);
+
+      setGameState(  <img src="./src/images/vinyle.png" alt="" />);
+    }
+  }, [isLoose, isPlay]);
+
 
   return ( 
     <div className="flex flex-col text-white glass items-center justify-center align-middle minHeight">
       {isWarming ? <div className=" text-center mx-auto my-auto">
         {startTimer}
-      </div> : <div className="mx-auto my-auto"> <p>GO</p></div>}
-      <div className="w-64 h-72 bg-black bg-opacity-50 flex items-center justify-center align-middle rounded-xl">
+
+      </div> : ""}
+      <div className="w-64 h-72 my-8 bg-black bg-opacity-50 flex items-center justify-center align-middle rounded-xl">
+      
+
+
         {gameState}
       </div>
       <ul className="w-full grid m-2   p-5 grid-cols-2 grid-rows-2 ">
