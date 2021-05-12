@@ -23,6 +23,7 @@ export default function Game({
   setRandom3,
   myArray,
   setRandom4,
+  shuffle,
 }) {
   const [userChoice, setUserChoice] = useState();
   const [randomResults, setRandomResults] = useState();

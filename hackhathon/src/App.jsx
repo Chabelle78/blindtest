@@ -22,8 +22,9 @@ function App() {
   const [random2, setRandom2] = useState("");
   const [random3, setRandom3] = useState("");
   const [random4, setRandom4] = useState("");
-
-  const myArray = [random, random2, random3, random4];
+  const [shuffled, setShuffled] = useState();
+  let myArray = [random, random2, random3, random4];
+  console.log(myArray);
 
   useEffect(() => {
     if (startTimer <= 0) {
@@ -38,6 +39,15 @@ function App() {
       console.log(timer);
     }
   }, [startTimer]);
+  const shuffle = (array) => {
+    array.sort(() => Math.random() - 0.5);
+  };
+  useEffect(() => {
+    console.log(songs);
+    shuffle(myArray);
+    setShuffled(myArray);
+    console.log(shuffled);
+  }, [isPlay]);
 
   const resetGame = () => {
     audioRef.current.pause();
@@ -86,10 +96,12 @@ function App() {
       ></audio>
       <Navbar setIsLogged={setIsLogged} isLogged={isLogged} />
       {isLogged ? (
-        !isLoading && (
+        !isLoading &&
+        shuffled && (
           <Main
+            shuffle={shuffle}
             resetGame={resetGame}
-            myArray={myArray}
+            myArray={shuffled}
             audioRef={audioRef}
             isLoose={isLoose}
             setIsLoose={setIsLoose}
@@ -121,6 +133,7 @@ function App() {
       <Footer />
       {isWin && (
         <PopUp
+          random={random}
           getDatas={getDatas}
           setIsWin={setIsWin}
           setIsLoose={setIsLoose}
