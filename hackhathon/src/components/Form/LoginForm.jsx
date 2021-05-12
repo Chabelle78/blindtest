@@ -13,9 +13,20 @@ export default function LoginForm({ isLogged, setIsLogged }) {
         method: "GET",
       })
     ).json();
+
+    if (!datas) {
+      const datas2 = await (
+        await fetch("http://192.168.1.26:4000/api/v1/user/", {
+          method: "GET",
+        })
+      ).json();
+      setUserRes(datas);
+    }
     setUserRes(datas);
+
     console.log(datas);
   };
+
   useEffect(() => {
     getDatas();
   }, []);
