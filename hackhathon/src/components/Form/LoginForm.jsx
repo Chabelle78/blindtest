@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useController, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import Main from "../Main/Main";
+import SignIn from "./SignIn";
 
 export default function LoginForm({ isLogged, setIsLogged }) {
   const [userRes, setUserRes] = useState();
+  const [error, setError] = useState(false);
+
   const getDatas = async () => {
     const datas = await (
-      await fetch("http://localhost:4000/api/v1/user/", {
+      await fetch("http://192.168.1.26:4000/api/v1/user/", {
         method: "GET",
       })
     ).json();
@@ -34,18 +36,21 @@ export default function LoginForm({ isLogged, setIsLogged }) {
       setIsLogged(true);
     } else {
       setIsLogged(false);
+      setError(true);
+      console.log(isLogged);
     }
   };
 
   return (
     <div>
+      <p className="">Please enter your login if you have already registered</p>
       <form
         action="submit"
         onSubmit={handleSubmit(onSubmit)}
         action=""
-        className="text-center"
+        className="text-center text-bl"
       >
-        <div className="flex flex-col mb-2">
+        <div className="">
           <input
             className={`focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none ${
               errors.pseudo ? "bg-red-300 placeholder-red-700" : ""
@@ -64,7 +69,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
           />
           <ErrorMessage errors={errors} name="pseudo" />
         </div>
-        <div className="flex flex-col mb-2">
+        <div className="">
           <input
             className={`focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none ${
               errors.password ? "bg-red-300 placeholder-red-700" : ""
@@ -89,9 +94,15 @@ export default function LoginForm({ isLogged, setIsLogged }) {
            bg-black rounded-2xl px-4 py-2 
            hover:bg-gray-700 text-white text-lg "
         >
-          PLAY
+          LOGIN
         </button>
+        {error && (
+          <div>
+            <p className="text-xl text-red-500">INCORRECT LOGIN OR PASSWORD </p>
+          </div>
+        )}
       </form>
+      <SignIn />
     </div>
   );
 }
