@@ -2,10 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Footer from "./components/Footer/Footer";
 import Main from "./components/Main/Main";
 import Navbar from "./components/Navbar/Navbar";
-<<<<<<< HEAD
 import PopUp from "./components/PopUp/PopUp";
-=======
->>>>>>> parent of cb47f6a... premier jet de css
 
 function App() {
   const [songs, setSongs] = useState();
@@ -78,15 +75,12 @@ function App() {
 
   return (
     <div className="flex flex-col">
-<<<<<<< HEAD
       <audio
         className="hidden"
         ref={audioRef}
         controls
         src={random.s3_link}
       ></audio>
-=======
->>>>>>> parent of cb47f6a... premier jet de css
       <Navbar />
       {!isLoading && (
         <Main
