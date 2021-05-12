@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import './Game.css'
 
 export default function Game({
   songs,
@@ -85,22 +86,24 @@ export default function Game({
   }, [isLoose, isPlay]);
 
   return (
-    <div className="flex flex-col text-white shadow p-8 w-full  bg-purple-800 rounded-xl bg-opacity-80 items-center justify-center align-middle">
-      <div>Bienvennue JULIEN</div>
-      {isWarming ? startTimer : "WAIT"}
-      <div className="w-80 h-80 bg-black bg-opacity-50 flex items-center justify-center align-middle">
+    <div className="flex flex-col text-white glass items-center justify-center align-middle">
+     
+      {isWarming ? <div className="my-4">
+        {startTimer}
+      </div> : ""}
+      <div className="w-64 h-72 my-8 bg-black bg-opacity-50 flex items-center justify-center align-middle rounded-xl
+">
         {gameState}
       </div>
-      <div>TRACK INFOS</div>
-      <ul className="w-full grid m-2   p-5 grid-cols-2 grid-rows-2">
+      <ul className="w-full grid m-2   p-5 grid-cols-2 grid-rows-2 ">
         {myArray.map((song, index) => {
           return (
             <li
               key={index}
-              className="flex m-2 shadow2  items-center flex-col justify-center align-middle"
+              className="flex m-2 glass py-1 items-center flex-col justify-center align-middle"
             >
               <button
-                className="text-white w-full   rounded-xl py-2 px-4 cursor-pointer"
+                className="text-white w-full   rounded-xl py-2 px-4 cursor-pointer focus:outline-none"
                 value={song.title}
                 onClick={handleClick}
               >

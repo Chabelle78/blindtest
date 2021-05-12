@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import '../Game/Game.css'
 
 export default function count({
   timer,
@@ -28,15 +29,15 @@ export default function count({
     if (isWin && !isLoose) {
       setGameState(<div>YOU WON !</div>);
     } else if (isLoose) {
-      setGameState(<div>YOU LOOSE BOOOH !</div>);
+      setGameState(<div className="text-center">YOU LOOSE BOOOH !</div>);
     }
   }, [isWin, isLoose, isPlay]);
 
   return (
-    <div className="text-white w-full flex flex-col items-center align-middle justify-center text-9xl">
+    <div className="text-white w-72 h-72 glassPlay flex flex-col items-center align-middle justify-center mx-auto rounded-full text-4xl">
       {isPlay && !isWin && !isLoose ? timer : gameState}
       <button
-        className="text-4xl border-2 border-white  rounded-xl my-4"
+        className="text-2xl border-2 border-white  rounded-xl my-4 py-2 px-4"
         onClick={resetGame}
       >
         RESET
