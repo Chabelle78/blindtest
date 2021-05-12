@@ -24,7 +24,7 @@ export default function count({
       setGameState(<div>YOU LOOSE BOOOH !</div>);
     }
     if (!isPlay) {
-      setGameState(<button onClick={handleClick}>PLAY</button>);
+      setGameState(<button className="focus:outline-none" onClick={handleClick}>PLAY</button>);
     }
     if (isWin && !isLoose) {
       setGameState(<div>YOU WON !</div>);
@@ -34,10 +34,10 @@ export default function count({
   }, [isWin, isLoose, isPlay]);
 
   return (
-    <div className="text-white w-72 h-72 glassPlay flex flex-col items-center align-middle justify-center mx-auto rounded-full text-4xl">
+    <div className="text-white w-72 h-72 glassPlay flex flex-col items-center align-middle  justify-center mx-auto rounded-full text-4xl">
       {isPlay && !isWin && !isLoose ? timer : gameState}
       <button
-        className="text-2xl border-2 border-white  rounded-xl my-4 py-2 px-4"
+        className="text-2xl border-2 border-white  focus:outline-none rounded-xl my-4 py-2 px-4"
         onClick={resetGame}
       >
         RESET

@@ -85,10 +85,10 @@ export default function Game({
     }
   }, [isLoose, isPlay]);
 
-  return (
+  return ( 
     <div className="flex flex-col text-white glass items-center justify-center align-middle">
      
-      {isWarming ? <div className="my-4">
+      {isWarming ? <div className="mt-6 border text-center rounded-full p-7 w-20 mx-auto ">
         {startTimer}
       </div> : ""}
       <div className="w-64 h-72 my-8 bg-black bg-opacity-50 flex items-center justify-center align-middle rounded-xl
