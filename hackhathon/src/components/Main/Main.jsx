@@ -31,7 +31,7 @@ export default function Main({
   myArray,
 }) {
   return (
-    <div className="main grid grid-cols-3 w-full h-screen">
+    <div className="main flex items-center align-middle justify-around w-full h-screen">
       <Scores />
       <Game
         myArray={myArray}

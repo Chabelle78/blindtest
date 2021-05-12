@@ -1,11 +1,13 @@
 import React from "react";
 import UserScore from "./UserScore";
-import '../Game/Game.css'
-
 
 export default function Scores() {
   return (
+<<<<<<< HEAD
     <div className="flex flex-col relative items-center align-middle justify-center w-full h-full">
+=======
+    <div className="flex flex-col relative items-center align-middle justify-center h-full">
+>>>>>>> parent of cb47f6a... premier jet de css
       <div className="w-72 h-2/4 bg-black relative opacity-50 rounded-xl border-2 flex-col ">
         <h2 className="text-white h-12 flex items-center  rounded-t-xl justify-center bg-purple-800">
           High Score

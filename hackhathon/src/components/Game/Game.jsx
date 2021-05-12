@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import './Game.css'
 
 export default function Game({
   songs,
@@ -85,7 +84,12 @@ export default function Game({
   }, [isLoose, isPlay]);
 
   return (
+<<<<<<< HEAD
     <div className="flex flex-col text-white shadow p-8 w-full  bg-purple-800 rounded-xl bg-opacity-80 items-center justify-center align-middle">
+=======
+    <div className="flex flex-col bg-black bg-opacity-50 items-center justify-center align-middle">
+      <audio ref={audioRef} controls src={random.s3_link}></audio>
+>>>>>>> parent of cb47f6a... premier jet de css
       <div>Bienvennue JULIEN</div>
       {isWarming ? startTimer : "WAIT"}
       <div className="w-80 h-80 bg-black bg-opacity-50 flex items-center justify-center align-middle">
