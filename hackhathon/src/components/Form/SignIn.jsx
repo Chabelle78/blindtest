@@ -21,7 +21,7 @@ export default function Signin({ getDatas }) {
     setPseudo(data.pseudo);
     setPassword(data.password);
     if (pseudo) {
-      fetch("http://localhost:4000/api/v1/user/", {
+      fetch("http://192.168.1.26:4000/api/v1/user/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,17 +37,16 @@ export default function Signin({ getDatas }) {
     getDatas();
   };
   return (
-    <div>
-      <p className="">If Not, Please Sign In</p>
-      <form
+    <div className="ml-16">
+        <form
         action="submit"
         onSubmit={handleSubmit(onSubmitSignin)}
         action=""
-        className="text-center text-bl"
+        className="text-center "
       >
         <div className="">
           <input
-            className={`focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none ${
+            className={`flex flex-col focus:border-2 border-gray-400 rounded-2xl py-2 px-8 mb-6 focus:outline-none ${
               errors.pseudoSignin ? "bg-red-300 placeholder-red-700" : ""
             }`}
             type="text"
@@ -66,7 +65,7 @@ export default function Signin({ getDatas }) {
         </div>
         <div className="">
           <input
-            className={`focus:border-2 border-gray-400 rounded-full py-1 px-8 mb-2 focus:outline-none ${
+            className={`flex flex-col focus:border-2 border-gray-400 rounded-2xl py-2 px-8 mb-14 focus:outline-none ${
               errors.passwordsignin ? "bg-red-300 placeholder-red-700" : ""
             }`}
             type="password"

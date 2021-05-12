@@ -15,7 +15,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
 
   const getDatas = async () => {
     const datas = await (
-      await fetch("http://localhost:4000/api/v1/user/", {
+      await fetch("http://192.168.1.26:4000/api/v1/user/", {
         method: "GET",
       })
     ).json();
@@ -42,19 +42,19 @@ export default function LoginForm({ isLogged, setIsLogged }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center ">
       <h1 className="w-2/4 my-44 text-5xl text-center text-white">
         Welcome to the Super Blind Test
       </h1>
+      <div className="flex justify-around items-center px-5 mx-10">
       <form
         action="submit"
         onSubmit={handleSubmit(onSubmit)}
         action=""
-        className="flex flex-col justify-center items-center w-2/4 "
-      >
+        className="flex flex-col justify-center items-center w-2/4 mr-16 ">
         <div className="flex flex-col mb-4">
           <input
-            className={`focus:border-2 border-gray-400 rounded-2xl py-2 px-8 mb-2 focus:outline-none ${
+            className={`flex flex-col focus:border-2 border-gray-400 rounded-2xl py-2 px-8 mb-2 focus:outline-none ${
               errors.pseudo ? "bg-red-300 placeholder-red-700" : ""
             }`}
             type="text"
@@ -62,7 +62,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
             name="pseudo"
             id="pseudo"
             {...register("pseudo", {
-              required: "This is required to play",
+              required: "Required",
               minLength: {
                 value: 3,
                 message: "Please enter min 3 letters",
@@ -73,7 +73,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
         </div>
         <div className="">
           <input
-            className={`focus:border-2 border-gray-400 rounded-2xl py-2 px-8 mb-14 focus:outline-none ${
+            className={`flex flex-col focus:border-2 border-gray-400 rounded-2xl py-2 px-8 mb-14 focus:outline-none ${
               errors.password ? "bg-red-300 placeholder-red-700" : ""
             }`}
             type="password"
@@ -81,7 +81,7 @@ export default function LoginForm({ isLogged, setIsLogged }) {
             placeholder="Password..."
             id="password"
             {...register("password", {
-              required: "This is required to play",
+              required: "Required",
               minLength: {
                 value: 3,
                 message: "Please enter min 3 letters",
@@ -103,8 +103,12 @@ export default function LoginForm({ isLogged, setIsLogged }) {
             <p className="text-xl text-red-500">INCORRECT LOGIN OR PASSWORD </p>
           </div>
         )}
+        
       </form>
+      <div className="mx-auto">
       <SignIn getDatas={getDatas} />
+      </div>
+      </div>
     </div>
   );
 }

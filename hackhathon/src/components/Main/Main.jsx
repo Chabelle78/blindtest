@@ -31,7 +31,7 @@ export default function Main({
   users,
 }) {
   return (
-    <div className="grid grid-cols-3 items-center align-middle justify-around w-full h-screen">
+    <div className="md:grid md:grid-cols-3 md:items-center md:align-middle md:justify-around flex flex-col w-full h-screen">
       <Scores users={users} />
       <Game
         shuffle={shuffle}
