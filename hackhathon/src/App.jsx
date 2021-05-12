@@ -4,6 +4,7 @@ import Main from "./components/Main/Main";
 import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/Form/LoginForm";
 import PopUp from "./components/PopUp/PopUp";
+import './App.css'
 
 function App() {
   const [songs, setSongs] = useState();
@@ -86,7 +87,7 @@ function App() {
   }, [songs]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col purpleWave h-screen">
       <audio
         className="hidden"
         ref={audioRef}
@@ -129,7 +130,7 @@ function App() {
         <LoginForm setIsLogged={setIsLogged} isLogged={isLogged} />
       )}
 
-      <Footer />
+      
       {isWin && (
         <PopUp
           random={random}

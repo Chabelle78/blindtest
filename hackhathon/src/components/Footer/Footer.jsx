@@ -1,10 +1,11 @@
 import React from "react";
+import '../Game/Game.css';
 
 export default function Footer() {
   return (
-    <div className="bg-gray-400 fixed bottom-0 w-full">
-      <ul className="flex flex-col items-center md:flex-row md:justify-around">
-        <li className="py-3">
+    <div className=" fixed bottom-0 glassFooter  h-16 w-full text-white ">
+      <ul className="flex items-center md:flex-row md:justify-around">
+        <li className="py-3 ">
           Abbadie Julien
           <div className="flex md:flex-row justify-center">
             <a href="https://github.com/JIdayyy" target="_blank">
@@ -33,3 +34,5 @@ export default function Footer() {
     </div>
   );
 }
+
+// bg-black bg-opacity-60
